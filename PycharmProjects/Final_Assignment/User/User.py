@@ -207,4 +207,4 @@ if __name__ == '__main__':
     app = page(window)
     window.mainloop()
 
-
+# due to having no parameters unit test cant be done properly.
