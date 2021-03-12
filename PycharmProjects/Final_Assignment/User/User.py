@@ -3,17 +3,21 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 import pymysql
-# page class
+"""
+page class helps the user determine what is the interface and how it is different is it depending on shape, size and color
+"""
 class page:
     def __init__(self,window):
         self.window = window
         self.window.title("User Management System")
         self.window.geometry("800x700+300+0")
         self.window.resizable(False,False)
-        # defining frames
+
         Main_frame = Frame(self.window, bd = 10, width = 770, height = 700, relief = RIDGE, bg = "lavender")
         Main_frame.grid()
-
+         '''
+        Python takes this frame to take the user interface to be suitable with the backgroun
+        '''
 
         Title_frame = Frame(Main_frame, bd = 7, width = 770, height = 100, relief = RIDGE)
         Title_frame.grid(row = 0, column = 0)
@@ -36,7 +40,11 @@ class page:
         password = StringVar()
         age = StringVar()
 
-       # buttons and calling the connector
+       """
+       these buttons such as add_btn, reset, delete, update can do with function to determine 
+       what a single button can do. For example; Add_btn can add database to the table, reset can remove the data from
+       the box and delete button can delete the required information based on Primary Key.
+       """
         def add_btn():
             if UserID.get() == '' or username.get() == '' or email == '' :
                 messagebox.showerror("Empty Field", "plz fill correct details")
@@ -135,7 +143,11 @@ class page:
 
 
 
-        #label, entry and grid
+        '''
+        Label help to determine that what is the name of the thing that is used for 
+        adding or fill datas in and also what grid is it in to write or type the data.
+        Entry helps to write or type the data in the required boxes.
+        '''
         self.lbltitle = Label(Title_frame, font = ("Times New Roman", 40, 'bold'), text = "User Management System", bd = 7)
         self.lbltitle.grid(row = 0, column = 0, padx = 132)
 
@@ -164,7 +176,10 @@ class page:
         self.Age_entry = Entry(L_frame, font=("Times New Roman", 12, 'bold'), bd=5, width=40, justify='left', textvariable = age)
         self.Age_entry.grid(row=5, column=1, sticky=W, padx=5)
 
-        # scrolling the data
+        '''
+        Since, there are going to be numberous amount of the data, a scrollbar is needed to
+        help with the interface.
+        '''
         scroll_y = Scrollbar(Left_Frame, orient = VERTICAL)
         self.user_record = ttk.Treeview(Left_Frame, height = 14, columns = ('uid','uname','email','passw','age'), xscrollcommand = scroll_y.set)
 
@@ -187,7 +202,9 @@ class page:
         self.user_record.pack(fill = BOTH, expand = 1)
         self.user_record.bind('<ButtonRelease-1>', userinfo)
 
-        # buttons displaying the functions
+        '''
+        the required buttons would help to determine what are the functions and can be used with the command to determine it.
+        '''
         self.add_button = Button(R_frame,font=("Times New Roman", 16, 'bold'), text= "insert data" ,bd = 5, pady = 2, padx = 25, width = 6, height = 2, command = add_btn ).grid(row = 0, column = 0, padx = 1)
         self.display_button = Button(R_frame, font=("Times New Roman", 16, 'bold'), text="display data", bd=5, pady=2,
                                 padx=25, width=6, height=2,command = display_data).grid(row=1, column=0, padx=1)
